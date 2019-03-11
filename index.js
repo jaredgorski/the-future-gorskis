@@ -7,7 +7,7 @@ let urlLoop;
 let emoji;
 
 function showDetailsPanel({noscroll = false, delay = 700}) {
-  if (!noscroll || !bodyPanelInViewport()) scrollToBody();
+  if (!noscroll && !bodyPanelInViewport()) scrollToBody();
 
   if (detailsPanel.classList.contains('showing')
     || storyPanel.classList.contains('block-details')) return;
