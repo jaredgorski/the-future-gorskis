@@ -24,6 +24,8 @@ function showStoryPanel() {
     storyPanel.classList.add('block-details');
   }
 
+  detailsPanel.classList.remove('initial-load');
+
   if (!bodyPanelInViewport()) scrollToBody();
 
   if (storyPanel.classList.contains('showing')) return;
