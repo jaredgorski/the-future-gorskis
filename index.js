@@ -8,8 +8,10 @@ let emoji;
 let clickWait = false;
 
 function showDetailsPanel({noscroll = false, delay = 700}) {
-  if (document.getElementById('detailsBtn').classList.contains('selected')) return;
+  if (!detailsPanel.classList.contains('initial-load') && showDetails.classList.contains('selected')) return;
 
+  detailsPanel.classList.remove('initial-load');
+  
   if (clickWait) return;
   clickWait = true;
 
@@ -20,8 +22,8 @@ function showDetailsPanel({noscroll = false, delay = 700}) {
 
   storyPanel.classList.remove('showing');
   urlTime();
-  document.getElementById('detailsBtn').classList.add('selected');
-  document.getElementById('storyBtn').classList.remove('selected');
+  showDetails.classList.add('selected');
+  showStory.classList.remove('selected');
   setTimeout(() => {
     document.body.classList.remove('story-length');
     storyPanel.classList.remove('showing');
@@ -34,7 +36,7 @@ function showDetailsPanel({noscroll = false, delay = 700}) {
 }
 
 function showStoryPanel() {
-  if (document.getElementById('storyBtn').classList.contains('selected')) return;
+  if (showStory.classList.contains('selected')) return;
 
   if (clickWait) return;
   clickWait = true;
@@ -52,8 +54,8 @@ function showStoryPanel() {
   detailsPanel.classList.remove('showing');
   urlHearts();
   document.body.classList.add('story-length');
-  document.getElementById('storyBtn').classList.add('selected');
-  document.getElementById('detailsBtn').classList.remove('selected');
+  showStory.classList.add('selected');
+  showDetails.classList.remove('selected');
   setTimeout(() => {
     detailsPanel.classList.remove('showing');
     storyPanel.classList.add('showing');
