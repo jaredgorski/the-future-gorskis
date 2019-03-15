@@ -12,13 +12,18 @@ html {
 
 body {
   color: #333;
-  height: 129vw;
+  height: 120vw;
   padding: 3.4vw 3.4vw 7.8vw;
   font-family: 'Jost';
-  font-size: 1.2vw;
+  font-size: 1.5vw;
   font-weight: 400;
   letter-spacing: 0.11vw;
+  transition: 0.7s;
   width: 100vw;
+}
+
+body.story-length {
+  height: 150vw;
 }
 
 main {
@@ -29,11 +34,19 @@ main {
   grid-template: 
     'header' 1fr
     'hr1' 1px
-    'body' 2fr
+    'body' 2.8fr
     'footer' 1fr / 3.1fr;
   height: 100%;
-  padding: 3.75vw;
+  padding: 5vw 3.75vw 3.75vw;
   width: 100%;
+}
+
+body.story-length main {
+  grid-template:
+    'header' 1fr
+    'hr1' 1px
+    'body' 2.8fr
+    'footer' 1fr / 3.1fr;
 }
 
 a {
@@ -99,6 +112,15 @@ h1 {
   width: 100%;
 }
 
+#detailsBtn, #storyBtn {
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+#detailsBtn.selected, #storyBtn.selected {
+  opacity: 1;
+}
+
 ul {
   display: inline-flex;
 }
@@ -140,8 +162,8 @@ li {
 }
 
 .body-story {
-  letter-spacing: 0.06vw;
-  line-height: 1.7vw;
+  letter-spacing: 0.07vw;
+  line-height: 2.2vw;
 }
 
 p {
@@ -164,6 +186,7 @@ p {
 
 .showing {
   opacity: 1;
+  z-index: 1;
 }
 
 .footer {
@@ -223,7 +246,7 @@ p {
 }
 
 .link-underline-block {
-  margin: -1vw 0 1vw;
+  margin: -1vw 0 1.5vw;
   text-align: center;
 }
 
@@ -246,11 +269,85 @@ p {
   color: #AAA;
   font-weight: 400;
   margin: 0 9px;
+  white-space: nowrap;
 }
 
 .gloria {
   font-style: italic;
   margin: 1.5vw 0 0;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  body, body.story-length {
+    height: 100%;
+    font-size: 3vw;
+    letter-spacing: 0.18vw;
+    min-width: 320px;
+    padding: 0;
+  }
+
+  main, body.story-length main {
+    grid-template: 
+      'header' 1fr 
+      'hr1' 1px 
+      'body' auto 
+      'footer' 1fr / 3.1fr;
+    height: auto;
+  }
+
+  .hr1 {
+    width: 90%;
+  }
+
+  #countdown {
+    font-size: 2.3vw;
+  }
+
+  .body-nav {
+    display: none;
+  }
+
+  .body-panel {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .body-details, .body-story {
+    opacity: 1;
+    position: static;
+  }
+
+  .body-details {
+    margin: 5vw 0 10vw;
+  }
+
+  .details {
+    font-size: 4vw;
+  }
+
+  .sub-details {
+    font-size: 2.8vw;
+  }
+
+  .body-story {
+    letter-spacing: 0.12vw;
+    line-height: 3.5vw;
+  }
+
+  p {
+    margin: 0 0 4vw;
+  }
+
+  .link-underline-block {
+    margin: -1vw 0 3vw;
+  }
+}
+
+@media (max-width: 280px) {
+  body {
+    display: none;
+  }
 }
 

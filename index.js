@@ -5,8 +5,14 @@ const storyPanel = document.getElementById('storyPanel');
 
 let urlLoop;
 let emoji;
+let clickWait = false;
 
 function showDetailsPanel({noscroll = false, delay = 700}) {
+  if (document.getElementById('detailsBtn').classList.contains('selected')) return;
+
+  if (clickWait) return;
+  clickWait = true;
+
   if (!noscroll && !bodyPanelInViewport()) scrollToBody();
 
   if (detailsPanel.classList.contains('showing')
@@ -14,12 +20,25 @@ function showDetailsPanel({noscroll = false, delay = 700}) {
 
   storyPanel.classList.remove('showing');
   urlTime();
+  document.getElementById('detailsBtn').classList.add('selected');
+  document.getElementById('storyBtn').classList.remove('selected');
   setTimeout(() => {
+    document.body.classList.remove('story-length');
+    storyPanel.classList.remove('showing');
     detailsPanel.classList.add('showing')
   }, delay);
+
+  setTimeout(() => {
+    clickWait = false;
+  }, 900);
 }
 
 function showStoryPanel() {
+  if (document.getElementById('storyBtn').classList.contains('selected')) return;
+
+  if (clickWait) return;
+  clickWait = true;
+
   if (detailsPanel.classList.contains('initial-load')) {
     storyPanel.classList.add('block-details');
   }
@@ -32,10 +51,18 @@ function showStoryPanel() {
 
   detailsPanel.classList.remove('showing');
   urlHearts();
+  document.body.classList.add('story-length');
+  document.getElementById('storyBtn').classList.add('selected');
+  document.getElementById('detailsBtn').classList.remove('selected');
   setTimeout(() => {
+    detailsPanel.classList.remove('showing');
     storyPanel.classList.add('showing');
     storyPanel.classList.remove('block-details');
   }, 700);
+
+  setTimeout(() => {
+    clickWait = false;
+  }, 900);
 }
 
 function scrollToBody() {
