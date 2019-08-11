@@ -2,5 +2,3 @@
 Wedding website for myself and my bride, Rachel!
 
 ![](https://github.com/jaredgorski/the-future-gorskis/raw/master/images/rach&jar.jpg)
-
-### [link](https://the-future-gorskis.herokuapp.com/index.html)
